@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.sportsing.api.Match;
+import sportpack.Match;
 
 @Path("/rs/sports")
 public class SportsingRSService {
@@ -34,3 +34,5 @@ public class SportsingRSService {
 		throw new IllegalAccessException("No such match \" "+ sport +"\"");
 	}	
 }
+
+//http://localhost:8080/sportsing-webservice/rs/sports/list
