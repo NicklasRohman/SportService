@@ -18,33 +18,27 @@ public class SportsingRSService {
 	@Path("/list")
 	@Produces(MediaType.APPLICATION_XML)
 	public List<Match> getMatches(){
-		
-
-	System.out.println("GetMatches i Matches");
 			matches = new ArrayList<>();
 			matches.add(new Match("Fotboll","Iggy",3,1));
 			matches.add(new Match("Hocky","wolf",5,1));
 			matches.add(new Match("Innebandy","Nicklas",1,2));
 			matches.add(new Match("Golf","Nicklas",-7,1));
 			matches.add(new Match("Hapkido","Gustav",4,2));
+			matches.add(new Match("Fotboll","Brolin",5,1));
 		return matches;
 	}
 	
 	@GET
-	@Path("/get/{matchname}")
-	@Produces(MediaType.APPLICATION_XML)
-	public Match getMatch(@PathParam("sport") String sport){
-		
-		for (Match match : matches) {
-			if (match.getContenderIterator().equals(sport)) {
-				return match;
-			}
-		}
-		return getMatch(sport);
-	}	
+	@Path("/DBpath")
+	@Produces(MediaType.TEXT_HTML)
+	public String returnTitle(){
+		return"<p>Testar DB</p>";
+	}
+	
 }
 
 
 
 
 //http://localhost:8080/sportsing-webservice/rs/sports/list
+//http://localhost:8080/sportsing-webservice/rs/sports/DBpath
