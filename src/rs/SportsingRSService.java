@@ -1,13 +1,13 @@
 package rs;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
 import com.sportsing.api.Match;
+
+import database.Database;
 
 
 @Path("/rs/sports")
@@ -29,16 +29,38 @@ public class SportsingRSService {
 	}
 	
 	@GET
-	@Path("/DBpath")
+	@Path("/checkDataBase")
 	@Produces(MediaType.TEXT_HTML)
-	public String returnTitle(){
-		return"<p>Testar DB</p>";
+	public String checkDataBase() throws Exception {
+
+		PreparedStatement query = null;
+		String returnString = null;
+		String myString = null;
+		Connection conn = null;
+
+		try {
+
+			conn = Database.databaseConnection().getConnection();
+			query = conn.prepareStatement("select to_char(sysdate,'YYYY-MM-DD HH24:MI:SS') DATETIME from sys.dual");
+			ResultSet rs = query.executeQuery();
+
+			while (rs.next()) {
+				myString = rs.getString("DATETIME");
+			}
+			query.close();
+			returnString = "<p>DataBase Status</p>" + "<p>DataBase Date/Time return: " + myString + "</p>";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			returnString="<p>DataBase Status not found</p>";
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		return returnString;
 	}
-	
 }
 
-
-
-
 //http://localhost:8080/sportsing-webservice/rs/sports/list
-//http://localhost:8080/sportsing-webservice/rs/sports/DBpath
+//http://localhost:8080/sportsing-webservice/rs/sports/checkDataBase
