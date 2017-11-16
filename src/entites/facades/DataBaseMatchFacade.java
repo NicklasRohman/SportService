@@ -5,13 +5,12 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import entites.DataBaseMatch;
-
+import entites.DataBaseMatchEntity;
 
 
 @Stateless
 //@DeclareRoles({"admin","hero"})
-public class DataBaseMatchFacade extends AbstractFacades<DataBaseMatch>{
+public class DataBaseMatchFacade extends AbstractFacades<DataBaseMatchEntity>{
 	@PersistenceContext(unitName="matches")
 	private EntityManager em;
 
@@ -21,24 +20,24 @@ public class DataBaseMatchFacade extends AbstractFacades<DataBaseMatch>{
 	}
 	
 	public DataBaseMatchFacade(){
-		super(DataBaseMatch.class);
+		super(DataBaseMatchEntity.class);
 	}
 	
 	@Override
 	//@RolesAllowed({"admin"})
-	public void create(DataBaseMatch entity) {
+	public void create(DataBaseMatchEntity entity) {
 		super.create(entity);
 	}
 
 	@Override
 	//@RolesAllowed({"admin"})
-	public void edit(DataBaseMatch entity) {
+	public void edit(DataBaseMatchEntity entity) {
 		super.edit(entity);
 	}
 
 	@Override
 	//@RolesAllowed({"admin"})
-	public void remove(DataBaseMatch entity) {
+	public void remove(DataBaseMatchEntity entity) {
 		super.remove(entity);
 	}
 

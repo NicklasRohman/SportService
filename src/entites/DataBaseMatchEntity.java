@@ -3,7 +3,7 @@ package entites;
 import javax.persistence.*;
 
 @Entity
-public class DataBaseMatch {
+public class DataBaseMatchEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,3 +29,4 @@ public class DataBaseMatch {
 	}
 	
 }
+
